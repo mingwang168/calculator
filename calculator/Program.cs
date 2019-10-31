@@ -6,25 +6,22 @@ namespace calculator
     {
         static void Main(string[] args)
         {
+
             ShowMenu();
             var operationChoice = Console.ReadLine();
-            if (operationChoice != "1" && operationChoice != "2" && operationChoice != "3" && operationChoice != "4" && operationChoice != "5" && operationChoice != "6")
+            //validate the input if input is "6", done, else go in while loop
+            while (operationChoice != "6" )
             {
-                ShowMenu();
-                operationChoice = Console.ReadLine();
-            }
-            else
-            {
-                while (operationChoice != "6")
+                //if chosen between 1 to 5 ,do the calculation, else show the menu again
+                if (operationChoice == "1" || operationChoice == "2" || operationChoice == "3" || operationChoice == "4" || operationChoice == "5")
                 {
                     decimal a = GetOperatorA();
                     decimal b = GetOperatorB();
                     Console.WriteLine("the result is : " + Docalculation(a, b, operationChoice));
-                    ShowMenu();
-                    operationChoice = Console.ReadLine();
                 }
+                ShowMenu();
+                operationChoice = Console.ReadLine();
             }
-
         }
 
         public static void ShowMenu()
@@ -41,8 +38,10 @@ namespace calculator
         public static decimal GetOperatorA()
         {
             Console.WriteLine("Input operator A :");
-            decimal cleanNum1 = 0;
             var opa = Console.ReadLine();
+            //Convert opa to decimal type, assign value to cleanNum1 and return true if conversion is successful;
+            //Returns false if the transformation fails
+            decimal cleanNum1 = 0;
             while (!decimal.TryParse(opa, out cleanNum1))
             {
                 Console.Write("This is not valid input. Please enter an decimal value: ");
@@ -54,8 +53,10 @@ namespace calculator
         public static decimal GetOperatorB()
         {
             Console.WriteLine("Input operator B :");
-            decimal cleanNum2 = 0;
             var opb = Console.ReadLine();
+            decimal cleanNum2 = 0;
+            //Convert opa to decimal type, assign value to cleanNum2 and return true if conversion is successful;
+            //Returns false if the transformation fails
             while (!decimal.TryParse(opb, out cleanNum2))
             {
                 Console.Write("This is not valid input. Please enter an decimal value: ");
@@ -95,7 +96,14 @@ namespace calculator
                 while (ob == 0)
                 {
                     Console.WriteLine("Enter a non-zero divisor: ");
-                    ob = Convert.ToDecimal(Console.ReadLine());
+                    decimal cleanNum3 = 0;
+                    var rob = Console.ReadLine();
+                    while (!decimal.TryParse(rob, out cleanNum3))
+                    {
+                        Console.Write("This is not valid input. Please enter an decimal value: ");
+                        rob = Console.ReadLine();
+                    }
+                    ob = Convert.ToDecimal(rob);
                 }
                 result = oa / ob;
             }
