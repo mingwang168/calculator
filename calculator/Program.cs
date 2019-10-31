@@ -12,7 +12,7 @@ namespace calculator
             //validate the input if input is "6", done, else go in while loop
             while (operationChoice != "6" )
             {
-                //if chosen between 1 to 5 ,do the calculation, else show the menu again
+                //if the chosen between 1 to 5 ,do the calculation, else show the menu again
                 if (operationChoice == "1" || operationChoice == "2" || operationChoice == "3" || operationChoice == "4" || operationChoice == "5")
                 {
                     decimal a = GetOperatorA();
